@@ -1,5 +1,3 @@
-
-
 const BlogHeadline = ({blogPosts}) => {
     console.log(blogPosts);
     return(
