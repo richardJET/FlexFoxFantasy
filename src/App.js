@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
+import firebase from './firebase';
+import { getDatabase, onValue, ref} from 'firebase/database';
+import BlogHeadline from './components/BlogHeadline';
 
-function App() {
+const App = () => {
+
+  const [blogPosts, setBlogPosts] = useState([]);
+  useEffect(() => {
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
+
+    onValue(dbRef, res => {
+      const data = res.val().blogPosts;
+      const newBlogPosts = [];
+      for (let key in data) {
+        newBlogPosts.push(data[key]);
+      }
+      setBlogPosts(newBlogPosts);
+    })
+  },[]);
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Flex Fox Fantasy</h1>
+      <BlogHeadline blogPosts={blogPosts}/>
     </div>
   );
 }
