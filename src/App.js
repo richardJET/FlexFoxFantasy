@@ -27,7 +27,10 @@ const App = () => {
   return (
     <div className="App">
       <main>
-        <BlogHeadline blogPosts={blogPosts}/>
+        <Routes>
+          <Route path='/' element={ <BlogHeadline blogPosts={blogPosts} /> }/>
+        </Routes>
+        
       </main>
       <Footer />
     </div>
