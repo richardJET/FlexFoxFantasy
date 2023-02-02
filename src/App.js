@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import firebase from './firebase';
 import { getDatabase, onValue, query, orderByChild, ref} from 'firebase/database';
 import BlogHeadline from './components/BlogHeadline';
+import Footer from './components/Footer';
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
       <main>
         <BlogHeadline blogPosts={blogPosts}/>
       </main>
+      <Footer />
     </div>
   );
 }

@@ -12,7 +12,8 @@ html { box-sizing: border-box;}
 
 .App{
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -22,6 +23,10 @@ main{
 
 h2{
   font-family: 'Roboto Mono', monospace;
+}
+
+a{
+  text-decoration: none;
 }
 
 ul{
@@ -110,4 +115,33 @@ img{
 
 .talkintrades{
   background-color: #f47c3d;
+}
+
+footer{
+  border-top: #afafaf 1px solid;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+footer div{
+  width: 1200px;
+  margin: 30px 0;
+}
+
+footer p{
+  color: #afafaf;
+  margin: 30px 0 0 0;
+}
+
+.twitter{
+  background-color: #1DA1F2;
+  padding: 5px 15px;
+  color: white;
+  border-radius: 15px;
+}
+
+.twitter:hover,
+.twitter:focus{
+  background-color: #65BEF6;
 }
