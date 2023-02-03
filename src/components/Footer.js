@@ -6,7 +6,7 @@ const Footer = () => {
 
     return(
         <footer>
-            <div>
+            <div className='wrapper'>
                 <a href="https://twitter.com/FFBroadcasting" className="twitter" target='_blank' rel='noreferrer'><FontAwesomeIcon icon={faTwitter} /> Follow</a>
                 <p>&copy; 2023 Flex Fox Fantasy Federation</p>
             </div>

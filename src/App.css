@@ -11,9 +11,6 @@ html { box-sizing: border-box;}
 
 
 .App{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -21,6 +18,7 @@ main{
   padding: 40px 0;
 }
 
+h1,
 h2{
   font-family: 'Roboto Mono', monospace;
 }
@@ -29,16 +27,74 @@ a{
   text-decoration: none;
 }
 
+a:hover,
+a:focus{
+  color: #666666;
+}
+
 ul{
   list-style: none;
-  display: flex;
-  max-width: 1200px;
-  flex-wrap: wrap;
-  justify-content: space-between;
   padding: 0;
 }
 
-li{
+.wrapper{
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 0;
+  font-family: 'Roboto Mono', monospace;
+}
+
+header img{
+  width: 50px;
+  margin: 0 20px;
+}
+
+header div{
+  display: flex;
+  align-items: center;
+}
+
+header a{
+  color: inherit;
+}
+
+nav{
+  display: flex;
+  align-items: center;
+}
+
+nav div{
+  cursor: pointer;
+}
+
+nav .fa-chevron-down{
+  margin-left: 10px;
+}
+
+
+nav ul{
+  display: flex;
+  margin: 0;
+  align-items: center;
+}
+
+nav li{
+  margin-left: 40px;
+}
+
+main ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+main li{
   margin-bottom: 40px;
 }
 
@@ -58,7 +114,7 @@ li{
   height: 500px;
 }
 
-img{
+ul img{
   width: 100%;
   height: 100%;
   height: 350px;
@@ -119,14 +175,9 @@ img{
 
 footer{
   border-top: #afafaf 1px solid;
-  width: 100%;
   display: flex;
   justify-content: center;
-}
-
-footer div{
-  width: 1200px;
-  margin: 30px 0;
+  padding: 40px 0;
 }
 
 footer p{
@@ -144,4 +195,5 @@ footer p{
 .twitter:hover,
 .twitter:focus{
   background-color: #65BEF6;
+  color: white;
 }

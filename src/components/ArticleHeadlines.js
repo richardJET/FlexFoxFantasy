@@ -1,9 +1,9 @@
-const BlogHeadline = ({blogPosts}) => {
+const ArticleHeadlines = ({articles}) => {
     let i = 0; 
     let order = 0;
     return(
         <ul>
-            {blogPosts.map(({title, mainImage, id, bannerSize, category, postSummary}) => {
+            {articles.map(({title, mainImage, id, bannerSize, category, postSummary}) => {
                 const categoryClass = `category ${category.replace(/[9 ,']/g, "").toLowerCase()}`;
                 if (i < 24){
                     if (bannerSize === 'full'){
@@ -38,4 +38,4 @@ const BlogHeadline = ({blogPosts}) => {
     );
 }
 
-export default BlogHeadline;
+export default ArticleHeadlines;
