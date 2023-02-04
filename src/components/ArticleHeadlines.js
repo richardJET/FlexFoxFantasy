@@ -1,11 +1,21 @@
-const ArticleHeadlines = ({articles}) => {
+import { Link } from 'react-router-dom'
+
+const ArticleHeadlines = ({articles, categories}) => {
     let i = 0; 
     let order = 0;
+    
     return(
-        <ul>
-            {articles.map(({title, mainImage, id, bannerSize, category, postSummary}) => {
-                const categoryClass = `category ${category.replace(/[9 ,']/g, "").toLowerCase()}`;
+        articles?
+        <ul className='wrapper'>
+            {articles.map(({title, mainImage, articleId, bannerSize, category, postSummary}) => {
                 if (i < 24){
+                    const articleSlug = `/${title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '')}`;
+                    let categoryColor = 'black';
+                    categories.forEach(cat => {
+                        if(cat.name === category){
+                            categoryColor = cat.color;
+                        }
+                    });
                     if (bannerSize === 'full'){
                         i = i + 4;
                         if(i % 4 === 0){
@@ -19,22 +29,21 @@ const ArticleHeadlines = ({articles}) => {
                     }
 
                     return(
-                        <li key={id} className={bannerSize} style={{order: order}}>
-                            <div className='mainImageContainer'>
-                                <img src={mainImage} alt="to be added"/>
-                                <div className={categoryClass}>{category}</div>
-                            </div>
-                            <h2>{title}</h2>
-                            <p className='postSummary'>{postSummary}</p>
+                        <li key={articleId} className={bannerSize} style={{order: order}}>
+                            <Link to={articleSlug}>
+                                <div className='mainImageContainer'>
+                                    <img src={mainImage} alt="to be added"/>
+                                    <div className='category' style={{background: categoryColor}}>{category}</div>
+                                </div>
+                                <h3>{title}</h3>
+                                <p className='postSummary'>{postSummary}</p>
+                            </Link>
                         </li>
                     )
-                }else{
-                    return(
-                        null
-                    )
-                }
+                }else{ return null }
             })}
         </ul>
+        :null
     );
 }
 
