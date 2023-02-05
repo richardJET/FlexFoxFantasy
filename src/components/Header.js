@@ -5,8 +5,7 @@ const Header = () => {
         <header className='wrapper'>
             <div>
                 <Link to='/'>
-
-                <img src='https://daks2k3a4ib2z.cloudfront.net/58902785379867da07104d40/589604aafaafd8103e63a629_icon-p-130x130q80.jpeg' alt='Flex Fox Fantasy logo'/>
+                    <img src='https://daks2k3a4ib2z.cloudfront.net/58902785379867da07104d40/589604aafaafd8103e63a629_icon-p-130x130q80.jpeg' alt='Flex Fox Fantasy logo'/>
                 </Link>
                 <h1>Flex Fox Fantasy</h1>
             </div>

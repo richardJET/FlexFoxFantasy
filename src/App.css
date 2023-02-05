@@ -14,13 +14,24 @@ html { box-sizing: border-box;}
   font-family: 'Roboto', sans-serif;
 }
 
-main{
-  padding: 40px 0;
-}
 
 h1,
-h2{
+h2,
+h3{
   font-family: 'Roboto Mono', monospace;
+}
+
+h2{
+  color: #232323
+}
+
+h3{
+  color: #292929
+}
+
+p{
+  line-height: 22px;
+  color: #434343;
 }
 
 a{
@@ -34,19 +45,20 @@ a:focus{
 
 ul{
   list-style: none;
-  padding: 0;
+  padding: 30px 0;
 }
 
 .wrapper{
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
 header{
   display: flex;
   justify-content: space-between;
-  padding: 30px 0;
+  padding: 15px 0;
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -130,49 +142,6 @@ ul img{
   font-family: 'Roboto Mono', monospace;
 }
 
-.one-offs{
-  background-color: #33f;
-}
-
-.updown{
-  background-color: #f7ca18;
-}
-.powerrankings{
-  background-color: #50e3c2;
-}
-
-.tillostop10s{
-  background-color: #9face6;
-}
-
-.wartortle{
-  background-color: #8daef6;
-}
-
-.boldpredictions{
-  background-color: #ddeb27;
-}
-
-.leaguemilestones{
-  background-color: #5e43a8;
-}
-
-.weeklyrecap{
-  background-color: #cd7cc4;
-}
-
-.jeremiahsjudgements{
-  background-color: #ffc96f;
-}
-
-.chowgraphs{
-  background-color: #89d64a;
-}
-
-.talkintrades{
-  background-color: #f47c3d;
-}
-
 footer{
   border-top: #afafaf 1px solid;
   display: flex;
@@ -196,4 +165,42 @@ footer p{
 .twitter:focus{
   background-color: #65BEF6;
   color: white;
+}
+
+.bannerImage{
+  height: 55vh;
+  width: 100%;
+  object-fit: cover;
+}
+
+.article .category{
+  left: -80px;
+  top: -30px;
+}
+
+.article p{
+  line-height: 2em;
+}
+
+.articleInfo{
+  display: flex;
+  flex-wrap: wrap;
+  width: 25%;
+}
+
+.articleInfo h4{
+  margin: 5px 0;
+}
+
+.authorImage{
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.authorImage img{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: black 2px solid
 }
