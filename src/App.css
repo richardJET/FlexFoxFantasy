@@ -17,7 +17,8 @@ html { box-sizing: border-box;}
 
 h1,
 h2,
-h3{
+h3,
+h4{
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -45,7 +46,7 @@ a:focus{
 
 ul{
   list-style: none;
-  padding: 30px 0;
+  padding: 0;
 }
 
 .wrapper{
@@ -100,14 +101,71 @@ nav li{
   margin-left: 40px;
 }
 
+main .wrapper{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
 main ul{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: 0;
+  padding-top: 25px;
 }
 
 main li{
   margin-bottom: 40px;
+}
+
+
+
+button{
+  padding: 10px 12px;
+  background: none;
+  cursor: pointer;
+  border: #292929 1px solid;
+  align-self: flex-end;
+  color: #292929;
+  font-family: 'Roboto Mono', monospace;
+}
+
+button:hover,
+button:focus{
+  color: #666666;
+  border-color: #666666;
+}
+
+.filterMenu{
+  position: absolute;
+  z-index: 2;
+  top: 0px;
+  right: 115px;
+  display: none;
+  font-family: "FontAwesome";
+}
+
+.clearFilter{
+  border: none;
+  z-index: 1;
+  position: absolute;
+  top: 0px;
+  right: 120px;
+  display: none;
+  cursor: pointer;
+}
+
+select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px 12px;
+  background-color: white;
+  font-family: 'FontAwesome', 'Roboto Mono', monospace;
+  border: #292929 1px solid;
+  margin-left: 6px;
+  cursor: pointer;
 }
 
 .mainImageContainer{

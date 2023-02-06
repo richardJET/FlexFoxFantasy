@@ -10,8 +10,11 @@ import ArticlePage from './components/ArticlePage';
 
 
 const App = () => {
-
+  
   const [articleData, setArticleData] = useState({});
+  const [originalArticleData, setOriginalArticleData] = useState({});
+
+
   useEffect(() => {
     const database = getDatabase(firebase);
     const dbRef = ref(database)
@@ -22,21 +25,33 @@ const App = () => {
       for (let key in data) {
         newArticleData[key] = [];
         for (let id in data[key]){
-
-          newArticleData[key].push({...data[key][id], articleId: id});
+          newArticleData[key].push({...data[key][id], keyId: id});
         }
       }
 
+      newArticleData.articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+      setOriginalArticleData(newArticleData);
       setArticleData(newArticleData);     
     })
   },[]);
+
+  const filterArticles = (filterBy, filterValue) => {
+    const filteredArticleData = {...originalArticleData};
+    const filteredArticles = filteredArticleData.articles.filter(article => {
+      return article[filterBy] === filterValue
+    })
+    filteredArticleData.articles = filteredArticles;
+    setArticleData(filteredArticleData);
+  }
+
+  const resetFilter = () => setArticleData(originalArticleData);
  
   return (
     <div className="App">
       <Header categories={articleData.categories}/>
       <main>
         <Routes>
-          <Route path='/' element={<ArticleHeadlines articles={articleData.articles} categories={articleData.categories} /> }/>
+          <Route path='/' element={<ArticleHeadlines articleData={articleData} filterArticles={filterArticles} resetFilter={resetFilter}/> }/>
           <Route path='/:articleSlug' element = { <ArticlePage articleData={articleData} /> } />
         </Routes>
         

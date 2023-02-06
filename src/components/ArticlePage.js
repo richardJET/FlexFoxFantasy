@@ -6,7 +6,7 @@ const ArticlePage = ({articleData}) => {
     const { articleSlug } = useParams();
     return(
         articles?
-        articles.map(({author, date, articleId, mainImage, category, postBody, title}) => {
+        articles.map(({author, date, keyId, mainImage, category, postBody, title}) => {
             if(title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '') === articleSlug){
                 const stringDate = new Date(date);
                 let categoryColor = 'black';
@@ -23,7 +23,7 @@ const ArticlePage = ({articleData}) => {
                     }
                 })
                 return(
-                    <div key={articleId} className='article'>
+                    <div key={keyId} className='article'>
                         <img className='bannerImage' src={mainImage} alt='placeholder'/>
                         <div className='wrapper'>
                             <div className='articleInfo'>
@@ -37,11 +37,11 @@ const ArticlePage = ({articleData}) => {
                             </div>
                             <div className='category' style={{background: categoryColor}}>{category}</div>
                             <h2>{title}</h2>
-                                <div dangerouslySetInnerHTML={{ __html: postBody }}></div>
+                            <div dangerouslySetInnerHTML={{ __html: postBody }}></div>
                         </div>
                     </div>
                 )
-            } else  return null
+            } else return null
         })
         :null
     )
