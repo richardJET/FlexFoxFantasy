@@ -200,6 +200,13 @@ ul img{
   font-family: 'Roboto Mono', monospace;
 }
 
+.pageButtons{
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Roboto Mono', monospace;
+  padding-bottom: 25px;
+}
+
 footer{
   border-top: #afafaf 1px solid;
   display: flex;

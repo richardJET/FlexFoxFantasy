@@ -15,6 +15,8 @@ const App = () => {
   const [originalArticleData, setOriginalArticleData] = useState({});
 
 
+
+
   useEffect(() => {
     const database = getDatabase(firebase);
     const dbRef = ref(database)
@@ -28,8 +30,26 @@ const App = () => {
           newArticleData[key].push({...data[key][id], keyId: id});
         }
       }
-
       newArticleData.articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+      let i = 0;
+      let order = 0;
+      newArticleData.articles = newArticleData.articles.map(article => {
+        if (article.bannerSize === 'full') {
+          i = i + 4;
+          if (i % 4 === 0) {
+            order = i;
+          } else {
+            order = i - 5;
+          }
+        }else {
+          i = i + 2;
+          order = i;
+        }
+        return(
+          {...article, order: order }
+        )
+      })
+      console.log(newArticleData)
       setOriginalArticleData(newArticleData);
       setArticleData(newArticleData);     
     })
@@ -40,7 +60,26 @@ const App = () => {
     const filteredArticles = filteredArticleData.articles.filter(article => {
       return article[filterBy] === filterValue
     })
-    filteredArticleData.articles = filteredArticles;
+
+    let i = 0;
+    let order = 0;
+    filteredArticleData.articles = filteredArticles.map(article => {
+      if (article.bannerSize === 'full') {
+        i = i + 4;
+        if (i % 4 === 0) {
+          order = i;
+        } else {
+          order = i - 5;
+        }
+      } else {
+        i = i + 2;
+        order = i;
+      }
+      return (
+        { ...article, order: order }
+      )
+    });
+    console.log(filteredArticleData);
     setArticleData(filteredArticleData);
   }
 
@@ -53,6 +92,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<ArticleHeadlines articleData={articleData} filterArticles={filterArticles} resetFilter={resetFilter}/> }/>
           <Route path='/:articleSlug' element = { <ArticlePage articleData={articleData} /> } />
+          <Route path='/page/:pageNum' element={<ArticleHeadlines articleData={articleData} filterArticles={filterArticles} resetFilter={resetFilter} />} />
         </Routes>
         
       </main>

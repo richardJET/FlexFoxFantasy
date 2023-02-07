@@ -1,15 +1,16 @@
-import { Link } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSliders, faXmark} from '@fortawesome/free-solid-svg-icons';
+import { faSliders, faXmark, faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 
 const ArticleHeadlines = ({articleData, filterArticles, resetFilter}) => {
     
     const {articles, categories, authors} = articleData
-
-    let i = 0; 
-    let order = 0;
+    const { pageNum = 1 } = useParams()
+    const navigate = useNavigate()
+    
     
     const handleChange = e => {
+        navigate('/')
         e.target.parentElement.style.display = 'none';
         let filterBy = e.target[0].value;
         let filterValue = e.target.value;
@@ -32,6 +33,7 @@ const ArticleHeadlines = ({articleData, filterArticles, resetFilter}) => {
     return(
         articles?
         <div className='wrapper'>
+            
             <button onClick={handleClickSlider}><FontAwesomeIcon icon={faSliders} /> Filter</button>
             <form className='filterMenu' action='#'>
                 <select defaultValue='author' onChange={handleChange}>
@@ -54,8 +56,8 @@ const ArticleHeadlines = ({articleData, filterArticles, resetFilter}) => {
             </form>
             <button className='clearFilter' onClick={handleClickClose}>Clear Filter <FontAwesomeIcon icon={faXmark} /></button>
             <ul>
-                {articles.map(({title, mainImage, keyId, bannerSize, category, postSummary}) => {
-                    if (i < 24){
+                {articles.map(({title, mainImage, keyId, bannerSize, category, postSummary, pageNumber, order}) => {
+                    if (order <= 24*pageNum && order > 24*(pageNum - 1)){
                         const articleSlug = `/${title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '')}`;
                         let categoryColor = 'black';
                         categories.forEach(cat => {
@@ -63,18 +65,6 @@ const ArticleHeadlines = ({articleData, filterArticles, resetFilter}) => {
                                 categoryColor = cat.color;
                             }
                         });
-                        if (bannerSize === 'full'){
-                            i = i + 4;
-                            if(i % 4 === 0){
-                                order = i;
-                            } else {
-                                order = i-5;
-                            }
-                        }else{
-                            i = i + 2;
-                            order = i;
-                        }
-
                         return(
                             <li key={keyId} className={bannerSize} style={{order: order}}>
                                 <Link to={articleSlug}>
@@ -90,7 +80,10 @@ const ArticleHeadlines = ({articleData, filterArticles, resetFilter}) => {
                     }else{ return null }
                 })}
             </ul>
-
+            <div className='pageButtons'>
+                    {pageNum > 1 ? <Link to={`/page/${parseInt(pageNum, 10) - 1}`} className='previous' ><FontAwesomeIcon icon={faChevronLeft} />Previous</Link> : <div></div> }
+                    {pageNum <= Math.floor((articles[articles.length - 1].order / 24)) ? <Link to={`/page/${parseInt(pageNum, 10) + 1}`} className='next'>Next<FontAwesomeIcon icon={faChevronRight} /></Link> : null}
+            </div>
         </div>
         :null
     );
