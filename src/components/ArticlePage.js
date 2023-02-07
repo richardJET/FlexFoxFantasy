@@ -1,22 +1,26 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom"
 
-const ArticlePage = ({articleData}) => {
+const ArticlePage = ({articleData, changeBorderColor}) => {
 
     const {articles, categories, authors} = articleData
     const { articleSlug } = useParams();
+    let categoryColor = '#CCCCCC';
+    useEffect(() => {
+        changeBorderColor(categoryColor)
+    }, [changeBorderColor])
+
     return(
         articles?
         articles.map(({author, date, keyId, mainImage, category, postBody, title, mainImageDescription}) => {
             if(title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '') === articleSlug){
                 const stringDate = new Date(date);
-                let categoryColor = 'black';
                 let authorImage ='';
                 categories.forEach(cat => {
                     if (cat.name === category) {
                         categoryColor = cat.color;
                     }
                 });
-
                 authors.forEach(eachAuthor=>{
                     if(author === eachAuthor.authorName){
                         authorImage = eachAuthor.authorImage;

@@ -1,12 +1,14 @@
+import { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSliders, faXmark, faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 
-const ArticleHeadlines = ({articleData, filterArticles, resetFilter}) => {
+const ArticleHeadlines = ({articleData, filterArticles, resetFilter, changeBorderColor}) => {
     
-    const {articles, categories, authors} = articleData
-    const { pageNum = 1 } = useParams()
-    const navigate = useNavigate()
+    const {articles, categories, authors} = articleData;
+    const { pageNum = 1 } = useParams();
+    const navigate = useNavigate();
+    const [isFiltered, setIsFiltered] = useState(false);
     
     
     const handleChange = e => {
@@ -15,20 +17,25 @@ const ArticleHeadlines = ({articleData, filterArticles, resetFilter}) => {
         let filterBy = e.target[0].value;
         let filterValue = e.target.value;
         filterArticles(filterBy, filterValue);
-        e.target.parentElement.nextElementSibling.style.display = 'inline-block';
+        setIsFiltered(true);
         e.target.selectedIndex = 0;
     }
 
     const handleClickSlider = e => {
-        if (e.target.nextElementSibling.style.display === 'none'){
-            e.target.nextElementSibling.style.display = 'flex'
-        } else e.target.nextElementSibling.style.display = 'none';
+        if (e.currentTarget.nextElementSibling.style.display === 'none'){
+            e.currentTarget.nextElementSibling.style.display = 'flex'
+        } else e.currentTarget.nextElementSibling.style.display = 'none';
     }
 
     const handleClickClose = e => {
-        e.target.style.display = 'none';
+        e.currentTarget.style.display = 'none';
         resetFilter();
+        setIsFiltered(false);
     }
+
+    useEffect(() => {
+        changeBorderColor('#CCCCCC')
+    },[changeBorderColor])
 
     return(
         articles?
@@ -54,7 +61,7 @@ const ArticleHeadlines = ({articleData, filterArticles, resetFilter}) => {
                     })}
                 </select>
             </form>
-            <button className='clearFilter' onClick={handleClickClose}>Clear Filter <FontAwesomeIcon icon={faXmark} /></button>
+            <button className='clearFilter' onClick={handleClickClose} style={isFiltered ? {display: 'inline-block'} : {display: 'none'}}>Clear Filter <FontAwesomeIcon icon={faXmark} /></button>
             <ul>
                 {articles.map(({title, mainImage, keyId, bannerSize, category, postSummary, mainImageDescription, order}) => {
                     if (order <= 24*pageNum && order > 24*(pageNum - 1)){

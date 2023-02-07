@@ -44,6 +44,11 @@ a:focus{
   color: #666666;
 }
 
+img{
+  width: 100%;
+  height: 100%
+}
+
 ul{
   list-style: none;
   padding: 0;
@@ -56,17 +61,15 @@ ul{
   position: relative;
 }
 
-header{
+header .wrapper{
   display: flex;
   justify-content: space-between;
   padding: 15px 0;
   font-family: 'Roboto Mono', monospace;
-  border-top: 3px #CCCCCC solid;
 }
 
 header img{
   width: 50px;
-  margin: 0 20px;
 }
 
 header div{
@@ -100,6 +103,11 @@ nav ul{
 
 nav li{
   margin-left: 40px;
+}
+
+.mobileMenu{
+  display: none;
+  border: none;
 }
 
 main .wrapper{
@@ -153,7 +161,6 @@ button:focus{
   position: absolute;
   top: 0px;
   right: 120px;
-  display: none;
   cursor: pointer;
 }
 
@@ -186,8 +193,6 @@ select{
 }
 
 ul img{
-  width: 100%;
-  height: 100%;
   height: 350px;
 }
 
@@ -239,8 +244,12 @@ footer p{
   object-fit: cover;
 }
 
+.article .wrapper{
+  width: 80%;
+}
+
 .article .category{
-  left: -80px;
+  left: -70px;
   top: -30px;
 }
 
@@ -251,7 +260,7 @@ footer p{
 .articleInfo{
   display: flex;
   flex-wrap: wrap;
-  width: 25%;
+  padding: 20px 0;
 }
 
 .articleInfo h4{
@@ -269,4 +278,61 @@ footer p{
   width: 50px;
   border-radius: 50%;
   border: black 2px solid
+}
+
+/* Portrait tablet and small desktops */
+@media (max-width: 940px) {
+  .wrapper{
+    width: 95%;
+  }
+
+  .mobileMenu{
+    display: inline-block;
+  }
+
+  nav ul{
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    background-color: white;
+    z-index: 10;
+    left: 0;
+    right:0;
+    top: 100px;
+
+  }
+
+  nav li{
+    padding-bottom: 20px;
+    margin: 0;
+  }
+
+  .half{
+    flex-basis: 100%;
+  }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+  .article .category{
+    writing-mode: horizontal-tb;
+    top: -50px;
+    left: -10%;
+  }
+
+  .filterMenu{
+    flex-direction: column;
+  }
+
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+  h1{
+    font-size: 1.5rem;
+  }
+
+  nav ul{
+    top: 80px;
+  }
 }

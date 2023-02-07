@@ -13,6 +13,8 @@ const App = () => {
   
   const [articleData, setArticleData] = useState({});
   const [originalArticleData, setOriginalArticleData] = useState({});
+  const [articleColor, setArticleColor] = useState('#CCCCCC');
+
 
   useEffect(() => {
     const database = getDatabase(firebase);
@@ -81,15 +83,17 @@ const App = () => {
   }
 
   const resetFilter = () => setArticleData(originalArticleData);
- 
+
+  const changeBorderColor = categoryColor => setArticleColor(categoryColor);
+
   return (
     <div className="App">
-      <Header categories={articleData.categories}/>
+      <Header articleColor={articleColor}/>
       <main>
         <Routes>
-          <Route path='/' element={<ArticleHeadlines articleData={articleData} filterArticles={filterArticles} resetFilter={resetFilter}/> }/>
-          <Route path='/:articleSlug' element = { <ArticlePage articleData={articleData} /> } />
-          <Route path='/page/:pageNum' element={<ArticleHeadlines articleData={articleData} filterArticles={filterArticles} resetFilter={resetFilter} />} />
+          <Route path='/' element={<ArticleHeadlines articleData={articleData} filterArticles={filterArticles} resetFilter={resetFilter} changeBorderColor={changeBorderColor} /> }/>
+          <Route path='/:articleSlug' element = { <ArticlePage articleData={articleData} changeBorderColor={changeBorderColor}/> } />
+          <Route path='/page/:pageNum' element={<ArticleHeadlines articleData={articleData} filterArticles={filterArticles} resetFilter={resetFilter} changeBorderColor={changeBorderColor} />} />
         </Routes>
         
       </main>

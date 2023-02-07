@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-const Header = () => {
+const Header = ({articleColor}) => {
+
+    const handleClick = e => {
+        e.currentTarget.previousElementSibling.style.display === 'none' ? e.currentTarget.previousElementSibling.style.display = 'flex' : e.currentTarget.previousElementSibling.style.display = 'none';
+    }
+
     return(
-        <header>
-            <div className='colorBar'></div>
+        <header style={{ borderTop: `2px solid ${articleColor}` }}>
             <div className='wrapper'>
                 <div>
                     <Link to='/'>
@@ -12,7 +18,7 @@ const Header = () => {
                     <h1>Flex Fox Fantasy</h1>
                 </div>
                 <nav>
-                    <ul>
+                    <ul className='nav'>
                         <li>
                             <a href='https://docs.google.com/spreadsheets/d/1e28Bongr6CXDT68zFWCtZDyRCYVNqETXX8O51zBms-0/' target='_blank' rel='noreferrer'>Standings</a>
                         </li>
@@ -26,6 +32,7 @@ const Header = () => {
                             <a href='https://docs.google.com/spreadsheets/d/1jxtRmrwK6dbMQTS-PDn8l6hDHG0AlPYVtcVyxngG34U/' target='_blank' rel='noreferrer'>Minor Leagues</a>
                         </li>
                     </ul>
+                    <button className='mobileMenu' onClick={handleClick}><FontAwesomeIcon icon={faBars} /></button>
                 </nav>
             </div>
         </header>
