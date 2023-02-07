@@ -6,7 +6,7 @@ const ArticlePage = ({articleData}) => {
     const { articleSlug } = useParams();
     return(
         articles?
-        articles.map(({author, date, keyId, mainImage, category, postBody, title}) => {
+        articles.map(({author, date, keyId, mainImage, category, postBody, title, mainImageDescription}) => {
             if(title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '') === articleSlug){
                 const stringDate = new Date(date);
                 let categoryColor = 'black';
@@ -24,11 +24,11 @@ const ArticlePage = ({articleData}) => {
                 })
                 return(
                     <div key={keyId} className='article'>
-                        <img className='bannerImage' src={mainImage} alt='placeholder'/>
+                        <img className='bannerImage' src={mainImage} alt={mainImageDescription ? mainImageDescription : `banner for article titled '${title}'`} />
                         <div className='wrapper'>
                             <div className='articleInfo'>
                                 <div className='authorImage'>
-                                    <img src={authorImage} alt='placeHolder' style={{border: `2px solid ${categoryColor}`}}/>
+                                    <img src={authorImage} alt={`Black and white head of ${author}`} style={{border: `2px solid ${categoryColor}`}}/>
                                 </div>
                                 <div>
                                     <h4>{author}</h4>

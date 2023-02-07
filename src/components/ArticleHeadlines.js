@@ -56,7 +56,7 @@ const ArticleHeadlines = ({articleData, filterArticles, resetFilter}) => {
             </form>
             <button className='clearFilter' onClick={handleClickClose}>Clear Filter <FontAwesomeIcon icon={faXmark} /></button>
             <ul>
-                {articles.map(({title, mainImage, keyId, bannerSize, category, postSummary, pageNumber, order}) => {
+                {articles.map(({title, mainImage, keyId, bannerSize, category, postSummary, mainImageDescription, order}) => {
                     if (order <= 24*pageNum && order > 24*(pageNum - 1)){
                         const articleSlug = `/${title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '')}`;
                         let categoryColor = 'black';
@@ -69,7 +69,7 @@ const ArticleHeadlines = ({articleData, filterArticles, resetFilter}) => {
                             <li key={keyId} className={bannerSize} style={{order: order}}>
                                 <Link to={articleSlug}>
                                     <div className='mainImageContainer'>
-                                        <img src={mainImage} alt="to be added"/>
+                                        <img src={mainImage} alt={mainImageDescription ? mainImageDescription : `banner for article titled '${title}'`}/>
                                         <div className='category' style={{background: categoryColor}}>{category}</div>
                                     </div>
                                     <h3>{title}</h3>

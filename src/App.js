@@ -14,9 +14,6 @@ const App = () => {
   const [articleData, setArticleData] = useState({});
   const [originalArticleData, setOriginalArticleData] = useState({});
 
-
-
-
   useEffect(() => {
     const database = getDatabase(firebase);
     const dbRef = ref(database)
