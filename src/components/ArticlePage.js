@@ -45,9 +45,7 @@ const ArticlePage = ({articleData, changeBorderColor}) => {
                         </div>
                     </div>
                 )
-            } else { console.log(articleSlugLink)
-                console.log(articleSlug)
-                return null}
+            } else return null
         }):null
     ) 
 }
