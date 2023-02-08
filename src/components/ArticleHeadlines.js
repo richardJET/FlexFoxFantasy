@@ -26,7 +26,7 @@ const ArticleHeadlines = ({articleData, changeBorderColor, pageButtons, filterFo
                         
                         return(
                             <li key={keyId} className={bannerSize} style={{order: order}}>
-                                <Link to={articleSlug}>
+                                <Link to={`/${articleSlug}`}>
                                     <div className='mainImageContainer'>
                                         <img src={mainImage} alt={mainImageDescription ? mainImageDescription : `banner for article titled '${title}'`}/>
                                         <div className='category' style={{background: categoryColor}}>{category}</div>
