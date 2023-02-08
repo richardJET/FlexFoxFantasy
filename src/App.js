@@ -1,8 +1,8 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import firebase from './firebase';
 import { getDatabase, onValue, ref} from 'firebase/database';
 import { Route, Routes } from 'react-router-dom';
+import firebase from './firebase';
 import ArticleHeadlines from './components/ArticleHeadlines';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -17,11 +17,10 @@ const App = () => {
   const [originalArticleData, setOriginalArticleData] = useState({});
   const [articleColor, setArticleColor] = useState('#EBEBEB');
 
-
   useEffect(() => {
     const database = getDatabase(firebase);
     const dbRef = ref(database)
-    
+
     onValue(dbRef, res => {
       const data = res.val();
       const newArticleData = {};
@@ -32,25 +31,7 @@ const App = () => {
         }
       }
       newArticleData.articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-      let i = 0;
-      let order = 0;
-      newArticleData.articles = newArticleData.articles.map(article => {
-        if (article.bannerSize === 'full') {
-          i = i + 4;
-          if (i % 4 === 0) {
-            order = i;
-          } else {
-            order = i - 5;
-          }
-        }else {
-          i = i + 2;
-          order = i;
-        }
-        return(
-          {...article, order: order }
-        )
-      })
-      console.log(newArticleData)
+      newArticleData.articles = addPropertiesToObject(newArticleData.articles)
       setOriginalArticleData(newArticleData);
       setArticleData(newArticleData);     
     })
@@ -58,39 +39,33 @@ const App = () => {
 
   const filterArticles = (filterBy, filterValue) => {
     const filteredArticleData = {...originalArticleData};
-    const filteredArticles = filteredArticleData.articles.filter(article => {
-      return article[filterBy] === filterValue
-    })
+    const filteredArticles = filteredArticleData.articles.filter(article => article[filterBy] === filterValue)
+    filteredArticleData.articles = addPropertiesToObject(filteredArticles);
+    setArticleData(filteredArticleData);
+  }
 
-    let i = 0;
+  const addPropertiesToObject = articles => {
+    let i = 0; // amount of spce on page taken by article headline
     let order = 0;
-    filteredArticleData.articles = filteredArticles.map(article => {
+    return(
+    articles.map( article => {
       if (article.bannerSize === 'full') {
         i = i + 4;
-        if (i % 4 === 0) {
-          order = i;
-        } else {
-          order = i - 5;
-        }
+        i % 4 === 0 ? order = i : order = i - 5;
       } else {
         i = i + 2;
         order = i;
       }
       return (
-        { ...article, order: order }
+        { ...article, order: order, articleSlug: `${article.title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '')}` }
       )
-    });
-    console.log(filteredArticleData);
-    setArticleData(filteredArticleData);
+    }))
   }
 
   const filterForm = () => <Filter resetFilter={resetFilter} filterArticles={filterArticles} articleData={articleData} />
-
   const resetFilter = () => setArticleData(originalArticleData);
-
   const changeBorderColor = categoryColor => setArticleColor(categoryColor);
-
-  const pageButtons = (articles, pageNum) => <Pages articles={articles} pageNum={pageNum} />;
+  const pageButtons = pageNum => <Pages articles={articleData.articles} pageNum={pageNum} />;
 
   return (
     <div className="App">
@@ -98,7 +73,7 @@ const App = () => {
       <main>
         <Routes>
           <Route path='/' element={<ArticleHeadlines articleData={articleData} changeBorderColor={changeBorderColor} pageButtons={pageButtons} filterForm={filterForm}/> }/>
-          <Route path='/:articleSlug' element = { <ArticlePage articleData={articleData} changeBorderColor={changeBorderColor}/> } />
+          <Route path='/:articleSlugLink' element = { <ArticlePage articleData={articleData} changeBorderColor={changeBorderColor}/> } />
           <Route path='/page/:pageNum' element={<ArticleHeadlines articleData={articleData} changeBorderColor={changeBorderColor} pageButtons={pageButtons} filterForm={filterForm} />} />
         </Routes>
       </main>

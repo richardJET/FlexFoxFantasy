@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom'
 
-
 const ArticleHeadlines = ({articleData, changeBorderColor, pageButtons, filterForm}) => {
     
     const {articles, categories} = articleData;
@@ -9,22 +8,22 @@ const ArticleHeadlines = ({articleData, changeBorderColor, pageButtons, filterFo
 
     useEffect(() => {
         changeBorderColor('#EBEBEB')
-    },[changeBorderColor])
+    },[changeBorderColor]);
 
     return(
-        articles?
-        <div className='wrapper'>
+        articles
+        ? <div className='wrapper'>
             {filterForm()}
             <ul className='headlines'>
-                {articles.map(({title, mainImage, keyId, bannerSize, category, postSummary, mainImageDescription, order}) => {
-                    if (order <= 24*pageNum && order > 24*(pageNum - 1)){
-                        const articleSlug = `/${title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '')}`;
-                        let categoryColor = 'black';
-                        categories.forEach(cat => {
-                            if(cat.name === category){
-                                categoryColor = cat.color;
+                {articles.map(({title, mainImage, keyId, bannerSize, category, postSummary, mainImageDescription, order, articleSlug}) => {
+                    if(order <= 24*pageNum && order > 24*(pageNum - 1)){
+                        let categoryColor = '#EBEBEB';
+                        categories.forEach(eachCategory => {
+                            if(eachCategory.categoryName === category){
+                                categoryColor = eachCategory.color;
                             }
                         });
+                        
                         return(
                             <li key={keyId} className={bannerSize} style={{order: order}}>
                                 <Link to={articleSlug}>
@@ -37,13 +36,13 @@ const ArticleHeadlines = ({articleData, changeBorderColor, pageButtons, filterFo
                                 </Link>
                             </li>
                         )
-                    }else{ return null }
+                    }else return null
                 })}
             </ul>
-            {pageButtons(articles, pageNum)}
+            {pageButtons(pageNum)}
         </div>
-        :null
+        : null
     );
-}
+};
 
 export default ArticleHeadlines;

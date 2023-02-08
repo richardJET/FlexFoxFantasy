@@ -8,12 +8,11 @@ html { box-sizing: border-box;}
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
-
+/* Setup snippet end */
 
 .App{
   font-family: 'Roboto', sans-serif;
 }
-
 
 h1,
 h2,
@@ -75,6 +74,7 @@ header .wrapper{
 
 header img{
   width: 50px;
+  margin-right: 10px;
 }
 
 header div{
@@ -86,19 +86,9 @@ header a{
   color: inherit;
 }
 
-nav{
-  display: flex;
-  align-items: center;
-}
-
 nav div{
   cursor: pointer;
 }
-
-nav .fa-chevron-down{
-  margin-left: 10px;
-}
-
 
 nav ul{
   display: flex;
@@ -133,6 +123,11 @@ main li{
   margin-bottom: 40px;
 }
 
+li a:hover h3,
+li a:focus h3{
+  color: #434343;
+}
+
 .filter {
   display: flex;
   justify-content: flex-end;
@@ -153,15 +148,12 @@ button:focus{
   border-color: #666666;
 }
 
-
-
 .filterMenu{
   position: absolute;
   z-index: 2;
   top: 0px;
   right: 115px;
-  display: none;
-  font-family: "FontAwesome";
+  display: flex;
 }
 
 .clearFilter{
@@ -197,12 +189,12 @@ select{
   flex-basis: 100%;
 }
 
-.full img{
-  height: 500px;
+.half img{
+  height: 350px;
 }
 
-ul img{
-  height: 350px;
+.full img{
+  height: 500px;
 }
 
 .category{
@@ -227,10 +219,10 @@ footer{
   display: flex;
   justify-content: center;
   padding: 40px 0;
+  color: #afafaf;
 }
 
 footer p{
-  color: #afafaf;
   margin: 30px 0 0 0;
 }
 
@@ -272,12 +264,12 @@ strong{
   flex-wrap: wrap;
   padding: 20px 0;
   align-items: center;
+  color: #999999;
 }
 
 .articleInfo p{
   margin: 0;
   line-height: 1.5rem;
-  color: #999999;
 }
 
 .authorImage{
@@ -290,7 +282,6 @@ strong{
   height: 55px;
   width: 55px;
   border-radius: 50%;
-  border: black 2px solid
 }
 
 .title{
@@ -329,10 +320,6 @@ blockquote{
   list-style: disc;
 }
 
-#widget{
-  height: 500px;
-}
-
 /* Portrait tablet and small desktops */
 @media (max-width: 940px) {
   .wrapper{
@@ -352,7 +339,6 @@ blockquote{
     left: 0;
     right:0;
     top: 100px;
-
   }
 
   nav li{
@@ -375,8 +361,9 @@ blockquote{
 
   .filterMenu{
     flex-direction: column;
+    top: 40px;
+    right: 0;
   }
-
 }
 
 /* Landscape phones and down */

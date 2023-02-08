@@ -8,7 +8,9 @@ const Filter = ({resetFilter, articleData, filterArticles }) => {
     const { categories, authors } = articleData;
     const navigate = useNavigate();
     const [isFiltered, setIsFiltered] = useState(false);
-    
+    const [visibleForm, setVisibleForm] = useState(false);
+    authors.sort((a, b) => a.authorName.localeCompare(b.authorName))
+    categories.sort((a, b) => a.categoryName.localeCompare(b.categoryName))
     
     const handleChange = e => {
         navigate('/')
@@ -20,22 +22,18 @@ const Filter = ({resetFilter, articleData, filterArticles }) => {
         e.target.selectedIndex = 0;
     }
     
-    const handleClickSlider = e => {
-        if (e.currentTarget.nextElementSibling.style.display === 'none') {
-            e.currentTarget.nextElementSibling.style.display = 'flex'
-        } else e.currentTarget.nextElementSibling.style.display = 'none';
-    }
-    
-    const handleClickClose = e => {
-        e.currentTarget.style.display = 'none';
+    const handleClickClose = () => {
+        navigate('/');
         resetFilter();
         setIsFiltered(false);
     }
     return(
         <div className='filter'>
-            <button onClick={handleClickSlider}><FontAwesomeIcon icon={faSliders} /> Filter</button>
-            <form className='filterMenu' action='#'>
-                <select defaultValue='author' onChange={handleChange}>
+            <button onClick={() => visibleForm ? setVisibleForm(false) : setVisibleForm(true)}><FontAwesomeIcon icon={faSliders} /> Filter</button>
+            {visibleForm 
+            ? <form className='filterMenu' action='#' name='filterMenu'>
+                <label htmlFor='filterAuthor'></label>
+                <select id='filterAuthor' defaultValue='author' onChange={handleChange} name='filterMenu'>
                     <option disabled value='author'>Author</option>
                     {authors.map(({authorName, keyId}) => {
                         return(
@@ -44,15 +42,17 @@ const Filter = ({resetFilter, articleData, filterArticles }) => {
                     })}
 
                     </select>
-                    <select defaultValue='category' onChange={handleChange}>
+                    <label htmlFor='filterCategory'></label>
+                    <select id='filterCategory' defaultValue='category' onChange={handleChange}>
                         <option disabled value='category'>Category</option>
-                        {categories.map(({ name, keyId }) => {
+                        {categories.map(({ categoryName, keyId }) => {
                             return (
-                                <option key={keyId} value={name}>{name}</option>
+                                <option key={keyId} value={categoryName}>{categoryName}</option>
                             )
                         })};
                     </select>
                 </form>
+            : null}
                 <button className='clearFilter' onClick={handleClickClose} style={isFiltered ? { display: 'inline-block' } : { display: 'none' }}>Clear Filter <FontAwesomeIcon icon={faXmark} /></button>
         </div>
     )

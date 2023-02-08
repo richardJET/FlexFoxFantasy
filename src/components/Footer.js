@@ -3,7 +3,6 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 
 const Footer = () => {
-
     return(
         <footer>
             <div className='wrapper'>

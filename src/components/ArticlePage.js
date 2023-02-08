@@ -4,28 +4,28 @@ import { useParams } from "react-router-dom"
 const ArticlePage = ({articleData, changeBorderColor}) => {
 
     const {articles, categories, authors} = articleData
-    const { articleSlug } = useParams();
+    const { articleSlugLink } = useParams();
     let categoryColor = '#EBEBEB';
+    let authorImage = '';
     useEffect(() => {
         changeBorderColor(categoryColor)
     }, [changeBorderColor, categoryColor])
 
     return(
         articles?
-        articles.map(({author, date, keyId, mainImage, category, postBody, title, mainImageDescription}) => {
-            if(title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '') === articleSlug){
+        articles.map(({author, date, keyId, mainImage, category, postBody, title, mainImageDescription, articleSlug}) => {
+            if(articleSlug === articleSlugLink){
                 const stringDate = new Date(date);
-                let authorImage ='';
-                categories.forEach(cat => {
-                    if (cat.name === category) {
-                        categoryColor = cat.color;
+                categories.forEach(eachCategory => {
+                    if (eachCategory.categoryName === category) {
+                        categoryColor = eachCategory.color;
                     }
                 });
                 authors.forEach(eachAuthor=>{
                     if(author === eachAuthor.authorName){
                         authorImage = eachAuthor.authorImage;
                     }
-                })
+                });
                 return(
                     <div key={keyId} className='article'>
                         <img className='bannerImage' src={mainImage} alt={mainImageDescription ? mainImageDescription : `banner for article titled '${title}'`} />
@@ -45,11 +45,11 @@ const ArticlePage = ({articleData, changeBorderColor}) => {
                         </div>
                     </div>
                 )
-            } else return null
-        })
-        :null
-    )
-    
+            } else { console.log(articleSlugLink)
+                console.log(articleSlug)
+                return null}
+        }):null
+    ) 
 }
 
 export default ArticlePage;

@@ -5,8 +5,10 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 const Header = ({articleColor}) => {
 
     const handleClick = e => {
-        e.currentTarget.previousElementSibling.style.display === 'none' ? e.currentTarget.previousElementSibling.style.display = 'flex' : e.currentTarget.previousElementSibling.style.display = 'none';
-    }
+        e.currentTarget.previousElementSibling.style.display === 'flex'
+        ? e.currentTarget.previousElementSibling.style.display = 'none'
+        : e.currentTarget.previousElementSibling.style.display = 'flex';
+    };
 
     return(
         <header style={{ borderTop: `4px solid ${articleColor}` }}>
