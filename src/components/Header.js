@@ -9,7 +9,7 @@ const Header = ({articleColor}) => {
     }
 
     return(
-        <header style={{ borderTop: `2px solid ${articleColor}` }}>
+        <header style={{ borderTop: `4px solid ${articleColor}` }}>
             <div className='wrapper'>
                 <div>
                     <Link to='/'>

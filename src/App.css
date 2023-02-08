@@ -18,21 +18,26 @@ html { box-sizing: border-box;}
 h1,
 h2,
 h3,
-h4{
+h4,
+h5,
+h6{
   font-family: 'Roboto Mono', monospace;
+  font-weight: normal;
 }
 
 h2{
-  color: #232323
+  color: #232323;
 }
 
 h3{
-  color: #292929
+  color: #292929;
+  font-size: 1.5rem;
 }
 
 p{
   line-height: 22px;
   color: #434343;
+  margin: 10px 0;
 }
 
 a{
@@ -116,7 +121,7 @@ main .wrapper{
   position: relative;
 }
 
-main ul{
+.headlines{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -253,31 +258,75 @@ footer p{
   top: -30px;
 }
 
-.article p{
-  line-height: 2em;
+.article p,
+strong{
+  line-height: 2rem;
 }
 
 .articleInfo{
   display: flex;
   flex-wrap: wrap;
   padding: 20px 0;
+  align-items: center;
 }
 
-.articleInfo h4{
-  margin: 5px 0;
+.articleInfo p{
+  margin: 0;
+  line-height: 1.5rem;
+  color: #999999;
 }
 
 .authorImage{
   display: flex;
   align-items: center;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .authorImage img{
-  height: 50px;
-  width: 50px;
+  height: 55px;
+  width: 55px;
   border-radius: 50%;
   border: black 2px solid
+}
+
+.title{
+  font-size: 3rem;
+  margin: 20px 0 80px 0;
+}
+
+h4{
+  font-size: 1.4rem;
+}
+
+h5{
+  font-size: 1.2rem;
+}
+
+h6{
+  font-size: 1rem;
+}
+
+.postBody img{
+  object-fit: contain;
+  width: auto;
+  max-width: 100%;
+}
+
+blockquote{
+  font-size: 1.5rem;
+  font-style: italic;
+  border-left: 4px #EBEBEB solid;
+  margin: 24px;
+  padding-left: 16px;
+  color: #292929;
+}
+
+.article ul{
+  list-style: disc;
+}
+
+#widget{
+  height: 500px;
 }
 
 /* Portrait tablet and small desktops */

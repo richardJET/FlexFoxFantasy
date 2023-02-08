@@ -13,7 +13,7 @@ const App = () => {
   
   const [articleData, setArticleData] = useState({});
   const [originalArticleData, setOriginalArticleData] = useState({});
-  const [articleColor, setArticleColor] = useState('#CCCCCC');
+  const [articleColor, setArticleColor] = useState('#EBEBEB');
 
 
   useEffect(() => {

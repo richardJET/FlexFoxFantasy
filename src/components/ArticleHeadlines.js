@@ -34,7 +34,7 @@ const ArticleHeadlines = ({articleData, filterArticles, resetFilter, changeBorde
     }
 
     useEffect(() => {
-        changeBorderColor('#CCCCCC')
+        changeBorderColor('#EBEBEB')
     },[changeBorderColor])
 
     return(
@@ -62,7 +62,7 @@ const ArticleHeadlines = ({articleData, filterArticles, resetFilter, changeBorde
                 </select>
             </form>
             <button className='clearFilter' onClick={handleClickClose} style={isFiltered ? {display: 'inline-block'} : {display: 'none'}}>Clear Filter <FontAwesomeIcon icon={faXmark} /></button>
-            <ul>
+            <ul className='headlines'>
                 {articles.map(({title, mainImage, keyId, bannerSize, category, postSummary, mainImageDescription, order}) => {
                     if (order <= 24*pageNum && order > 24*(pageNum - 1)){
                         const articleSlug = `/${title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '')}`;

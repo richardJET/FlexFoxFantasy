@@ -5,10 +5,10 @@ const ArticlePage = ({articleData, changeBorderColor}) => {
 
     const {articles, categories, authors} = articleData
     const { articleSlug } = useParams();
-    let categoryColor = '#CCCCCC';
+    let categoryColor = '#EBEBEB';
     useEffect(() => {
         changeBorderColor(categoryColor)
-    }, [changeBorderColor])
+    }, [changeBorderColor, categoryColor])
 
     return(
         articles?
@@ -35,13 +35,13 @@ const ArticlePage = ({articleData, changeBorderColor}) => {
                                     <img src={authorImage} alt={`Black and white head of ${author}`} style={{border: `2px solid ${categoryColor}`}}/>
                                 </div>
                                 <div>
-                                    <h4>{author}</h4>
-                                    <h4>{stringDate.toDateString().split(' ').slice(1).join(' ')}</h4>
+                                    <p>{author}</p>
+                                    <p>{stringDate.toDateString().split(' ').slice(1).join(' ')}</p>
                                 </div>
                             </div>
                             <div className='category' style={{background: categoryColor}}>{category}</div>
-                            <h2>{title}</h2>
-                            <div dangerouslySetInnerHTML={{ __html: postBody }}></div>
+                            <h2 className='title'>{title}</h2>
+                            <div dangerouslySetInnerHTML={{ __html: postBody }} className='postBody'></div>
                         </div>
                     </div>
                 )
