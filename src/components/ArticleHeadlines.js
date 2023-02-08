@@ -1,37 +1,11 @@
-import { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSliders, faXmark, faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';
+import { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom'
 
-const ArticleHeadlines = ({articleData, filterArticles, resetFilter, changeBorderColor}) => {
+
+const ArticleHeadlines = ({articleData, changeBorderColor, pageButtons, filterForm}) => {
     
-    const {articles, categories, authors} = articleData;
+    const {articles, categories} = articleData;
     const { pageNum = 1 } = useParams();
-    const navigate = useNavigate();
-    const [isFiltered, setIsFiltered] = useState(false);
-    
-    
-    const handleChange = e => {
-        navigate('/')
-        e.target.parentElement.style.display = 'none';
-        let filterBy = e.target[0].value;
-        let filterValue = e.target.value;
-        filterArticles(filterBy, filterValue);
-        setIsFiltered(true);
-        e.target.selectedIndex = 0;
-    }
-
-    const handleClickSlider = e => {
-        if (e.currentTarget.nextElementSibling.style.display === 'none'){
-            e.currentTarget.nextElementSibling.style.display = 'flex'
-        } else e.currentTarget.nextElementSibling.style.display = 'none';
-    }
-
-    const handleClickClose = e => {
-        e.currentTarget.style.display = 'none';
-        resetFilter();
-        setIsFiltered(false);
-    }
 
     useEffect(() => {
         changeBorderColor('#EBEBEB')
@@ -40,28 +14,7 @@ const ArticleHeadlines = ({articleData, filterArticles, resetFilter, changeBorde
     return(
         articles?
         <div className='wrapper'>
-            
-            <button onClick={handleClickSlider}><FontAwesomeIcon icon={faSliders} /> Filter</button>
-            <form className='filterMenu' action='#'>
-                <select defaultValue='author' onChange={handleChange}>
-                        <option disabled value='author'>Author</option>
-                    {authors.map(({authorName, keyId}) => {
-                        return(
-                            <option key={keyId} value={authorName}>{authorName}</option>
-                        )
-                    })}
-
-                </select>
-                <select defaultValue='category' onChange={handleChange}>
-                    <option disabled value='category'>Category</option>
-                    {categories.map(({ name, keyId }) => {
-                        return (
-                            <option key={keyId} value={name}>{name}</option>
-                        )
-                    })}
-                </select>
-            </form>
-            <button className='clearFilter' onClick={handleClickClose} style={isFiltered ? {display: 'inline-block'} : {display: 'none'}}>Clear Filter <FontAwesomeIcon icon={faXmark} /></button>
+            {filterForm()}
             <ul className='headlines'>
                 {articles.map(({title, mainImage, keyId, bannerSize, category, postSummary, mainImageDescription, order}) => {
                     if (order <= 24*pageNum && order > 24*(pageNum - 1)){
@@ -87,10 +40,7 @@ const ArticleHeadlines = ({articleData, filterArticles, resetFilter, changeBorde
                     }else{ return null }
                 })}
             </ul>
-            <div className='pageButtons'>
-                    {pageNum > 1 ? <Link to={`/page/${parseInt(pageNum, 10) - 1}`} className='previous' ><FontAwesomeIcon icon={faChevronLeft} />Previous</Link> : <div></div> }
-                    {pageNum <= Math.floor((articles[articles.length - 1].order / 24)) ? <Link to={`/page/${parseInt(pageNum, 10) + 1}`} className='next'>Next<FontAwesomeIcon icon={faChevronRight} /></Link> : null}
-            </div>
+            {pageButtons(articles, pageNum)}
         </div>
         :null
     );

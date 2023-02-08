@@ -133,14 +133,16 @@ main li{
   margin-bottom: 40px;
 }
 
-
+.filter {
+  display: flex;
+  justify-content: flex-end;
+}
 
 button{
   padding: 10px 12px;
   background: none;
   cursor: pointer;
   border: #292929 1px solid;
-  align-self: flex-end;
   color: #292929;
   font-family: 'Roboto Mono', monospace;
 }
@@ -150,6 +152,8 @@ button:focus{
   color: #666666;
   border-color: #666666;
 }
+
+
 
 .filterMenu{
   position: absolute;

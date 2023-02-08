@@ -7,6 +7,8 @@ import ArticleHeadlines from './components/ArticleHeadlines';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ArticlePage from './components/ArticlePage';
+import Pages from './components/Pages';
+import Filter from './components/Filter';
 
 
 const App = () => {
@@ -82,20 +84,23 @@ const App = () => {
     setArticleData(filteredArticleData);
   }
 
+  const filterForm = () => <Filter resetFilter={resetFilter} filterArticles={filterArticles} articleData={articleData} />
+
   const resetFilter = () => setArticleData(originalArticleData);
 
   const changeBorderColor = categoryColor => setArticleColor(categoryColor);
+
+  const pageButtons = (articles, pageNum) => <Pages articles={articles} pageNum={pageNum} />;
 
   return (
     <div className="App">
       <Header articleColor={articleColor}/>
       <main>
         <Routes>
-          <Route path='/' element={<ArticleHeadlines articleData={articleData} filterArticles={filterArticles} resetFilter={resetFilter} changeBorderColor={changeBorderColor} /> }/>
+          <Route path='/' element={<ArticleHeadlines articleData={articleData} changeBorderColor={changeBorderColor} pageButtons={pageButtons} filterForm={filterForm}/> }/>
           <Route path='/:articleSlug' element = { <ArticlePage articleData={articleData} changeBorderColor={changeBorderColor}/> } />
-          <Route path='/page/:pageNum' element={<ArticleHeadlines articleData={articleData} filterArticles={filterArticles} resetFilter={resetFilter} changeBorderColor={changeBorderColor} />} />
+          <Route path='/page/:pageNum' element={<ArticleHeadlines articleData={articleData} changeBorderColor={changeBorderColor} pageButtons={pageButtons} filterForm={filterForm} />} />
         </Routes>
-        
       </main>
       <Footer />
     </div>
