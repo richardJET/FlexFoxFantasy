@@ -320,6 +320,10 @@ blockquote{
   list-style: disc;
 }
 
+iframe{
+  max-width: 100%;
+}
+
 /* Portrait tablet and small desktops */
 @media (max-width: 940px) {
   .wrapper{
@@ -349,6 +353,10 @@ blockquote{
   .half{
     flex-basis: 100%;
   }
+
+  .mainImageContainer img{
+    height: 300px;
+  }
 }
 
 /* Landscape phone to portrait tablet */
@@ -364,6 +372,7 @@ blockquote{
     top: 40px;
     right: 0;
   }
+
 }
 
 /* Landscape phones and down */
@@ -374,5 +383,10 @@ blockquote{
 
   nav ul{
     top: 80px;
+  }
+
+  .mainImageContainer img {
+    height: 95vw;
+    object-fit: cover;
   }
 }
