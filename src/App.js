@@ -1,4 +1,3 @@
-import './App.css';
 import { useState, useEffect } from 'react';
 import { getDatabase, onValue, ref} from 'firebase/database';
 import { Route, Routes } from 'react-router-dom';
@@ -9,6 +8,7 @@ import Footer from './components/Footer';
 import ArticlePage from './components/ArticlePage';
 import Pages from './components/Pages';
 import Filter from './components/Filter';
+import './App.css';
 
 
 const App = () => {
@@ -62,7 +62,7 @@ const App = () => {
     }))
   }
 
-  const filterForm = () => <Filter resetFilter={resetFilter} filterArticles={filterArticles} articleData={articleData} />
+  const filterForm = () => <Filter resetFilter={resetFilter} filterArticles={filterArticles} articleData={articleData} originalArticles={originalArticleData.articles} />
   const resetFilter = () => setArticleData(originalArticleData);
   const changeBorderColor = categoryColor => setArticleColor(categoryColor);
   const pageButtons = pageNum => <Pages articles={articleData.articles} pageNum={pageNum} />;

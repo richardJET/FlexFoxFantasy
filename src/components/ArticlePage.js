@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
 
 const ArticlePage = ({articleData, changeBorderColor}) => {
 
@@ -7,6 +7,7 @@ const ArticlePage = ({articleData, changeBorderColor}) => {
     const { articleSlugLink } = useParams();
     let categoryColor = '#EBEBEB';
     let authorImage = '';
+    
     useEffect(() => {
         changeBorderColor(categoryColor)
     }, [changeBorderColor, categoryColor])
@@ -45,7 +46,7 @@ const ArticlePage = ({articleData, changeBorderColor}) => {
                         </div>
                     </div>
                 )
-            } else return null
+            } else return null;
         }):null
     ) 
 }

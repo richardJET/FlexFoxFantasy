@@ -22,10 +22,7 @@ const Header = ({articleColor}) => {
                 <nav>
                     <ul className='nav'>
                         <li>
-                            <a href='https://docs.google.com/spreadsheets/d/1e28Bongr6CXDT68zFWCtZDyRCYVNqETXX8O51zBms-0/' target='_blank' rel='noreferrer'>Standings</a>
-                        </li>
-                        <li>
-                            <a href='https://soundcloud.com/flex-fox-broadcasting' target='_blank' rel='noreferrer'>Podcast</a>
+                            <a href='https://anchor.fm/flex-fox-broadcasting' target='_blank' rel='noreferrer'>Podcast</a>
                         </li>
                         <li>    
                             <a href='https://fantasy.espn.com/baseball/league?leagueId=545' target='_blank' rel='noreferrer'>ESPN</a>

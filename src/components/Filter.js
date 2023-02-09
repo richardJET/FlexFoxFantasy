@@ -1,23 +1,21 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSliders, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
-const Filter = ({resetFilter, articleData, filterArticles }) => {
-    const { categories, authors } = articleData;
+const Filter = ({resetFilter, articleData, filterArticles, originalArticles }) => {
+    const { categories, authors, articles } = articleData;
     const navigate = useNavigate();
-    const [isFiltered, setIsFiltered] = useState(false);
+    const [isFiltered, setIsFiltered] = useState(originalArticles.length === articles.length ? false : true);
     const [visibleForm, setVisibleForm] = useState(false);
-    authors.sort((a, b) => a.authorName.localeCompare(b.authorName))
-    categories.sort((a, b) => a.categoryName.localeCompare(b.categoryName))
+    authors.sort((a, b) => a.authorName.localeCompare(b.authorName));
+    categories.sort((a, b) => a.categoryName.localeCompare(b.categoryName));
     
     const handleChange = e => {
         navigate('/')
         e.target.parentElement.style.display = 'none';
-        let filterBy = e.target[0].value;
-        let filterValue = e.target.value;
-        filterArticles(filterBy, filterValue);
+        filterArticles(e.target[0].value, e.target.value);
         setIsFiltered(true);
         e.target.selectedIndex = 0;
     }
@@ -53,7 +51,9 @@ const Filter = ({resetFilter, articleData, filterArticles }) => {
                     </select>
                 </form>
             : null}
-                <button className='clearFilter' onClick={handleClickClose} style={isFiltered ? { display: 'inline-block' } : { display: 'none' }}>Clear Filter <FontAwesomeIcon icon={faXmark} /></button>
+            {isFiltered 
+            ? <button className='clearFilter' onClick={handleClickClose}>Clear Filter <FontAwesomeIcon icon={faXmark} /></button>
+            : null}
         </div>
     )
 }
