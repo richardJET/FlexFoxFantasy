@@ -74,7 +74,7 @@ const App = () => {
       <main>
         <Routes>
           <Route path='/' element={<ArticleHeadlines articleData={articleData} changeBorderColor={changeBorderColor} pageButtons={pageButtons} filterForm={filterForm}/> }/>
-          <Route path='/new-article' element={<Post articleData={articleData}/>} />
+          <Route path='/new-article' element={<Post articleData={articleData} changeBorderColor={changeBorderColor} />} />
           <Route path='/:articleSlugLink' element = { <ArticlePage articleData={articleData} changeBorderColor={changeBorderColor}/> } />
           <Route path='/page/:pageNum' element={<ArticleHeadlines articleData={articleData} changeBorderColor={changeBorderColor} pageButtons={pageButtons} filterForm={filterForm} />} />
         </Routes>
