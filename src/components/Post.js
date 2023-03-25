@@ -5,13 +5,13 @@ import Link from '@tiptap/extension-link';
 import Youtube from '@tiptap/extension-youtube';
 import MenuBar from './MenuBar';
 import Article from './Article';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import firebase from "../firebase";
 import { getDatabase, push, ref } from "firebase/database";
 import { useNavigate } from 'react-router';
 
 
-const Post = ({articleData}) => {
+const Post = ({articleData, changeBorderColor}) => {
 
     const {categories, authors} = articleData;
     const [newArticle, setNewArticle] = useState(
@@ -24,6 +24,10 @@ const Post = ({articleData}) => {
     const [authorImage, setAuthorImage] = useState('https://daks2k3a4ib2z.cloudfront.net/58902786379867da07104d62/589188bdc31bf340043bfa18_flex.png');
     const navigate = useNavigate();
     
+    useEffect(() => {
+        changeBorderColor(categoryColor)
+    }, [changeBorderColor, categoryColor])
+
     const previewArticle = e => {
         e.preventDefault();
         setNewArticle({ ...newArticle, postBody: editor.getHTML(), createdOn: new Date(), date: new Date() });
