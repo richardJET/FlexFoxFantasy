@@ -30,7 +30,7 @@ const Post = ({articleData, changeBorderColor}) => {
 
     const previewArticle = e => {
         e.preventDefault();
-        setNewArticle({ ...newArticle, postBody: editor.getHTML(), createdOn: new Date(), date: new Date() });
+        setNewArticle({ ...newArticle, postBody: editor.getHTML(), createdOn: (new Date()).toString(), date: (new Date()).toString() });
         setFormSubmit(true); 
         setSaveForm(false);  
     }
