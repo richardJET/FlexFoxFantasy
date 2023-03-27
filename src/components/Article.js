@@ -6,13 +6,13 @@ const Article = ({article, authorImage, categoryColor }) => {
     return (
         <div className='article'>
             <Helmet>
-                <meta property="og:title" content={title}/>
+                <meta property="title" content={title}/>
                 <meta
-                    property="og:description"
+                    property="description"
                     content = {postSummary}
                 />
                 <meta
-                    property="og:image"
+                    property="image"
                     content={mainImage}
                 />
                 <meta name="twitter:card" content="summary_large_image" />
