@@ -6,10 +6,12 @@ const Article = ({article, authorImage, categoryColor }) => {
     return (
         <div className='article'>
             <Helmet>
-                <meta
-                    name="description"
-                    content = {`${title} - ${postSummary}`}
-                />
+                <Helmet>
+                    <meta
+                        name="description"
+                        content = {`${title} - ${postSummary}`}
+                    />
+                </Helmet>
             </Helmet>
             <img className='bannerImage' src={mainImage ? mainImage : 'https://picsum.photos/1600/900'} alt={mainImageDescription ? mainImageDescription : `banner for article titled '${title}'`} />
             <div className='wrapper'>
