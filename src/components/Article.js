@@ -1,9 +1,16 @@
+import { Helmet } from "react-helmet";
 
 const Article = ({article, authorImage, categoryColor }) => {
-    const { author, date, mainImage, category, postBody, title, mainImageDescription } = article;
+    const { author, date, mainImage, category, postSummary, postBody, title, mainImageDescription } = article;
     const stringDate = new Date(date);
     return (
         <div className='article'>
+            <Helmet>
+                <meta
+                    name="description"
+                    content = {`${title} - ${postSummary}`}
+                />
+            </Helmet>
             <img className='bannerImage' src={mainImage ? mainImage : 'https://picsum.photos/1600/900'} alt={mainImageDescription ? mainImageDescription : `banner for article titled '${title}'`} />
             <div className='wrapper'>
                 <div className='articleInfo'>
