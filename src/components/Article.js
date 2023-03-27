@@ -6,9 +6,14 @@ const Article = ({article, authorImage, categoryColor }) => {
     return (
         <div className='article'>
             <Helmet>
+                <meta property="og:title" content={title}/>
                 <meta
-                    name="description"
-                    content = {`${title} - ${postSummary}`}
+                    property="og:description"
+                    content = {postSummary}
+                />
+                <meta
+                    property="og:image"
+                    content={mainImage}
                 />
             </Helmet>
             <img className='bannerImage' src={mainImage ? mainImage : 'https://picsum.photos/1600/900'} alt={mainImageDescription ? mainImageDescription : `banner for article titled '${title}'`} />
