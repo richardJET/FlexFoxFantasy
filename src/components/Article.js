@@ -15,6 +15,7 @@ const Article = ({article, authorImage, categoryColor }) => {
                     property="og:image"
                     content={mainImage}
                 />
+                <meta name="twitter:card" content="summary_large_image" />
             </Helmet>
             <img className='bannerImage' src={mainImage ? mainImage : 'https://picsum.photos/1600/900'} alt={mainImageDescription ? mainImageDescription : `banner for article titled '${title}'`} />
             <div className='wrapper'>
