@@ -1,21 +1,29 @@
 import { Helmet } from "react-helmet";
 
 const Article = ({article, authorImage, categoryColor }) => {
-    const { author, date, mainImage, category, postSummary, postBody, title, mainImageDescription } = article;
+    const { author, articleSlug, date, mainImage, category, postSummary, postBody, title, mainImageDescription } = article;
     const stringDate = new Date(date);
     return (
         <div className='article'>
             <Helmet>
-                <meta property="title" content={title}/>
-                <meta
-                    property="description"
-                    content = {postSummary}
-                />
-                <meta
-                    property="image"
-                    content={mainImage}
-                />
+
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={`https://testfoxfantasy.netlify.app/${articleSlug}`} />
+                <meta property="og:title" content={title} />
+                <meta property="og:description" content={postSummary} />
+                <meta property="og:image" content={mainImage} />
+
+              
                 <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:domain" value={`https://testfoxfantasy.netlify.app/${articleSlug}`} />
+                <meta name="twitter:title" value={title} />
+                <meta name="twitter:description" value={postSummary} />
+                <meta name="twitter:image" content={mainImage} />
+                <meta name="twitter:url" value={`https://testfoxfantasy.netlify.app/${articleSlug}`} />
+                <meta name="twitter:label1" value="Author" />
+                <meta name="twitter:data1" value={author} />
+                <meta name="twitter:label2" value="Category" />
+                <meta name="twitter:data2" value={category} />
             </Helmet>
             <img className='bannerImage' src={mainImage ? mainImage : 'https://picsum.photos/1600/900'} alt={mainImageDescription ? mainImageDescription : `banner for article titled '${title}'`} />
             <div className='wrapper'>
