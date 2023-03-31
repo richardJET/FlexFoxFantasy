@@ -8,7 +8,6 @@ import Article from './Article';
 import { useState, useEffect } from 'react';
 import firebase from "../firebase";
 import { getDatabase, push, ref } from "firebase/database";
-import { useNavigate } from 'react-router';
 
 
 const Post = ({articleData, changeBorderColor}) => {
@@ -22,7 +21,8 @@ const Post = ({articleData, changeBorderColor}) => {
     const [saveForm, setSaveForm] = useState(false);
     const [categoryColor, setCategoryColor] = useState('#f72566');
     const [authorImage, setAuthorImage] = useState('https://daks2k3a4ib2z.cloudfront.net/58902786379867da07104d62/589188bdc31bf340043bfa18_flex.png');
-    const navigate = useNavigate();
+    const [inReview, setInReview] = useState(false);
+
     
     useEffect(() => {
         changeBorderColor(categoryColor)
@@ -61,12 +61,12 @@ const Post = ({articleData, changeBorderColor}) => {
     const publishArticle = () => {
         const database = getDatabase(firebase);
         const childRef = ref(database, 'articles');
-        push(childRef, newArticle)
-        navigate('/');
+        push(childRef, newArticle);
+        setInReview(true);
     }
 
     const save = () => {
-        localStorage.setItem('newArticle', JSON.stringify(newArticle))
+        localStorage.setItem('newArticle', JSON.stringify(newArticle));
         setSaveForm(true);
     }
 
@@ -90,7 +90,7 @@ const Post = ({articleData, changeBorderColor}) => {
             <Article article={newArticle} authorImage={authorImage} categoryColor={categoryColor}/>
             <div className='wrapper previewButtons'>
                 <button type='button' onClick={() => setFormSubmit(false)}>Back</button>
-                <button type='button' className='publish' onClick={publishArticle}>Publish</button>
+                <button type='button' className={`review ${inReview ? 'pending' : null}`} onClick={publishArticle}>{inReview ? 'In Review' : 'Submit'}</button>
             </div>
         </>
         : <form className='wrapper' onSubmit={previewArticle}>
