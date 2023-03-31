@@ -12,7 +12,9 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-exports.noti=functions.database.ref("/articles").onCreate(async (snapshot)=>{
+const articleRef = functions.database.ref("/articles/{articleId}");
+
+exports.noti = articleRef.onCreate(async (snapshot)=>{
   // get the data that was just added to the Realtime Database
   const val = snapshot.val();
 
