@@ -12,9 +12,9 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-exports.sendNoti=functions.database.ref("/articles").onCreate( async (snap)=>{
+exports.sendNoti=functions.database.ref("/articles").onCreate( async (snapshot)=>{
   // get the data that was just added to the Realtime Database
-  const val = snap.val();
+  const val = snapshot.val();
 
   // define the email options
   const mailOptions = {
