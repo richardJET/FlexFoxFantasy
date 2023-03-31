@@ -379,9 +379,13 @@ div .previewButtons{
   display: flex;
 }
 
-.publish, 
+.review, 
 .preview{
   margin-left: 20px;
+}
+
+.pending{
+  background-color: lightyellow;
 }
 
 .divider {
