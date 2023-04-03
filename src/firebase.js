@@ -15,9 +15,17 @@ const firebaseConfig = {
   appId: "1:979561182601:web:7d7a8d2f710a1af33f1d58"
 };
 
-// Initialize Firebase
+const firebaseConfig2 = {
+    apiKey: "AIzaSyCU2a1ym-vyrmn_gafD07MFVnOm5F80zOY",
+    authDomain: "flexfoxfantasytest.firebaseapp.com",
+    projectId: "flexfoxfantasytest",
+    storageBucket: "flexfoxfantasytest.appspot.com",
+    messagingSenderId: "120910639441",
+    appId: "1:120910639441:web:9480c5abcac04cf93ba370"
+};
+
+const firebaseTest = initializeApp(firebaseConfig2,"firebaseTest");
 const firebase = initializeApp(firebaseConfig);
 
-
 export default firebase;
-
+export { firebaseTest };
