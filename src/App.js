@@ -9,6 +9,7 @@ import ArticlePage from './components/ArticlePage';
 import Pages from './components/Pages';
 import Filter from './components/Filter';
 import './App.css';
+import Post from './components/Post';
 
 
 const App = () => {
@@ -73,6 +74,7 @@ const App = () => {
       <main>
         <Routes>
           <Route path='/' element={<ArticleHeadlines articleData={articleData} changeBorderColor={changeBorderColor} pageButtons={pageButtons} filterForm={filterForm}/> }/>
+          <Route path='/new-article' element={<Post articleData={articleData} changeBorderColor={changeBorderColor} />} />
           <Route path='/:articleSlugLink' element = { <ArticlePage articleData={articleData} changeBorderColor={changeBorderColor}/> } />
           <Route path='/page/:pageNum' element={<ArticleHeadlines articleData={articleData} changeBorderColor={changeBorderColor} pageButtons={pageButtons} filterForm={filterForm} />} />
         </Routes>

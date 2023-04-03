@@ -30,6 +30,9 @@ const Header = ({articleColor}) => {
                         <li>
                             <a href='https://docs.google.com/spreadsheets/d/1jxtRmrwK6dbMQTS-PDn8l6hDHG0AlPYVtcVyxngG34U/' target='_blank' rel='noreferrer'>Minor Leagues</a>
                         </li>
+                        <li>
+                            <Link to='/new-article'>Create Article</Link>
+                        </li>
                     </ul>
                     <button className='mobileMenu' onClick={handleClick}><FontAwesomeIcon icon={faBars} /></button>
                 </nav>

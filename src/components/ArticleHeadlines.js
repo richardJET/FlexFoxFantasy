@@ -28,7 +28,7 @@ const ArticleHeadlines = ({articleData, changeBorderColor, pageButtons, filterFo
                             <li key={keyId} className={bannerSize} style={{order: order}}>
                                 <Link to={`/${articleSlug}`}>
                                     <div className='mainImageContainer'>
-                                        <img src={mainImage} alt={mainImageDescription ? mainImageDescription : `banner for article titled '${title}'`}/>
+                                        <img src={mainImage ? mainImage : 'https://picsum.photos/1600/900'} alt={mainImageDescription ? mainImageDescription : `banner for article titled '${title}'`}/>
                                         <div className='category' style={{background: categoryColor}}>{category}</div>
                                     </div>
                                     <h3>{title}</h3>
