@@ -6,7 +6,7 @@ import Youtube from '@tiptap/extension-youtube';
 import MenuBar from './MenuBar';
 import Article from './Article';
 import { useState, useEffect } from 'react';
-import firebase from "../firebase";
+import { firebaseTest } from "../firebase";
 import { getDatabase, push, ref } from "firebase/database";
 
 
@@ -59,7 +59,7 @@ const Post = ({articleData, changeBorderColor}) => {
     }
 
     const publishArticle = () => {
-        const database = getDatabase(firebase);
+        const database = getDatabase(firebaseTest);
         const childRef = ref(database, 'articles');
         push(childRef, newArticle);
         setInReview(true);
