@@ -324,6 +324,18 @@ iframe{
   max-width: 100%;
 }
 
+table,
+th,
+td {
+  border: 1px solid;
+  padding: 10px
+}
+
+table{
+  border-collapse: collapse;
+  max-width: 100%;
+}
+
 /* Portrait tablet and small desktops */
 @media (max-width: 940px) {
   .wrapper{
