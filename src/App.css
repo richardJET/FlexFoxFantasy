@@ -402,6 +402,16 @@ div .previewButtons{
   border: green 1px solid;
 }
 
+table {
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid;
+}
+
 /* Portrait tablet and small desktops */
 @media (max-width: 940px) {
   .wrapper{
