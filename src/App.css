@@ -324,7 +324,6 @@ iframe{
   max-width: 100%;
 }
 
-table,
 th,
 td {
   border: 1px solid;
@@ -334,6 +333,8 @@ td {
 table{
   border-collapse: collapse;
   max-width: 100%;
+  display: block;
+  overflow: auto;
 }
 
 /* Portrait tablet and small desktops */
