@@ -109,6 +109,7 @@ main .wrapper{
   display: flex;
   flex-direction: column;
   position: relative;
+  padding-bottom: 25px;
 }
 
 .headlines{
@@ -165,7 +166,7 @@ button:focus{
   cursor: pointer;
 }
 
-select{
+.filter select{
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -211,19 +212,22 @@ select{
   display: flex;
   justify-content: space-between;
   font-family: 'Roboto Mono', monospace;
-  padding-bottom: 25px;
 }
 
 footer{
   border-top: #afafaf 1px solid;
   display: flex;
   justify-content: center;
-  padding: 40px 0;
+  padding: 25px 0;
   color: #afafaf;
 }
 
 footer p{
-  margin: 30px 0 0 0;
+  margin: 20px 0 0 0;
+}
+
+.credit{
+  margin: 15px 0 0 0;
 }
 
 .twitter{
@@ -324,17 +328,92 @@ iframe{
   max-width: 100%;
 }
 
-th,
-td {
-  border: 1px solid;
-  padding: 10px
+form ul{
+  list-style: disc;
 }
 
-table{
+.textEditor{
+  border: black 1px solid;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.textMenu{
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: black 1px solid;
+  padding: 10px;
+}
+
+.is-active {
+  background: #0D0D0D;
+  color: #FFF;
+}
+
+.ProseMirror{
+  margin: 0 10px;
+  outline: none;
+}
+
+.ProseMirror ul{
+  padding-left: 20px;
+}
+
+.textMenu button{
+  border: none;
+  border-radius: 5px;
+}
+
+label{
+  margin: 10px 0;
+}
+
+.required:after {
+  content: " *";
+  color: red;
+}
+
+div .previewButtons{
+  justify-content: flex-end;
+  flex-direction: row;
+  display: flex;
+}
+
+.review, 
+.preview{
+  margin-left: 20px;
+}
+
+.pending{
+  background-color: lightyellow;
+}
+
+.divider {
+  background-color: #EBEBEB;
+  margin-left: .5rem;
+  margin-right: .75rem;
+  width: 2px;
+}
+
+.saved,
+.saved:focus,
+.saved:hover{
+  color: green;
+  border: green 1px solid;
+}
+
+table {
   border-collapse: collapse;
   max-width: 100%;
   display: block;
   overflow: auto;
+}
+
+th,
+td {
+  border: 1px solid;
+  padding: 10px;
+
 }
 
 /* Portrait tablet and small desktops */
