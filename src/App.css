@@ -404,13 +404,16 @@ div .previewButtons{
 
 table {
   border-collapse: collapse;
+  max-width: 100%;
+  display: block;
+  overflow: auto;
 }
 
-table,
 th,
 td {
   border: 1px solid;
   padding: 10px;
+
 }
 
 /* Portrait tablet and small desktops */
